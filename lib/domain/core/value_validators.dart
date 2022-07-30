@@ -10,3 +10,16 @@ Either<ValueFailure<String>, double> validateDouble(String input) {
           ValueFailure.length(failure: LengthValueFailure(failedValue: input)))
       : right(validatedDouble);
 }
+
+Either<ValueFailure<String>, String> validateStringLength(
+    String input, int maxLength) {
+  if (input.length == maxLength) {
+    return right(input);
+  } else {
+    return left(
+      ValueFailure.stringLength(
+        failure: StringLengthFailure(failedValue: input),
+      ),
+    );
+  }
+}
